@@ -56,6 +56,10 @@ Route::prefix('v1')
                 // 用户注册
                 Route::post('users', [UsersController::class, 'store'])
                     ->name('users.store');
+
+                  // 图片验证码
+                  Route::post('captchas', [CaptchasController::class, 'store'])
+                  ->name('captchas.store');
             });
 
         Route::middleware('throttle:' . config('api.rate_limits.access'))
