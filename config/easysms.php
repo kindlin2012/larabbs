@@ -28,6 +28,10 @@ return [
         'qcloud' => [
             'sdk_app_id' => env('QCLOUD_SMS_APP_ID'),   // 要在.env文件配置好相应的值
             'app_key' => env('QCLOUD_SMS_APP_KEY'),   // 要在.env文件配置好相应的值
+            'sign_name' => 'Larabbs',
+            'templates' => [
+                'register' => env('SMS_QCLOUD_TEMPLATE_REGISTER'),
         ],
+       ],
     ],
 ];
