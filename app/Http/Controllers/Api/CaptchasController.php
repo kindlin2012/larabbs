@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Controller;
+//继承同文件夹下controller
 use Illuminate\Http\Request;
 use  Illuminate\Support\Str;
 use Gregwar\Captcha\CaptchaBuilder;
