@@ -19,16 +19,22 @@ return new class extends Migration
         Permission::create(['name' => 'manage_contents']);
         Permission::create(['name' => 'manage_users']);
         Permission::create(['name' => 'edit_settings']);
+        Permission::create(['name' => 'manage_warehouses']);
 
         // 创建站长角色，并赋予权限
         $founder = Role::create(['name' => 'Founder']);
         $founder->givePermissionTo('manage_contents');
         $founder->givePermissionTo('manage_users');
         $founder->givePermissionTo('edit_settings');
+        $founder->givePermissionTo('manage_warehouses');
 
         // 创建管理员角色，并赋予权限
         $maintainer = Role::create(['name' => 'Maintainer']);
         $maintainer->givePermissionTo('manage_contents');
+
+        //创建仓库管理员角色,并赋予权限
+        $housemaintainer=Role::create(['name'=>'housemaintainer']);
+        $housemaintainer->givePermissionTo('manage_warehouses');
     }
 
     public function down()

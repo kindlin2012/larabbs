@@ -8,6 +8,12 @@ return [
     'single'  => '分类',
     'model'   => Category::class,
 
+
+    'permission' => function () {
+        return Auth::user()->can('manage_contents');
+    },
+
+
     // 对 CRUD 动作的单独权限控制，其他动作不指定默认为通过
     'action_permissions' => [
         // 删除权限控制

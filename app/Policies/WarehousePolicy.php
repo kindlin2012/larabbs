@@ -23,8 +23,8 @@ class WarehousePolicy extends Policy
 
     public function create(User $user, Warehouse $warehouse)
     {
-        return $user->id==1;
-        // return true;
+        // return $user->id==1;
+        return true;
     }
 
 

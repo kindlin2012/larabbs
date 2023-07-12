@@ -29,19 +29,21 @@
 
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-          
+
                 <div class="mb-3">
                 	<label for="housename-field">Housename</label>
                 	<input class="form-control" type="text" name="housename" id="housename-field" value="{{ old('housename', $warehouse->housename ) }}" />
-                </div> 
+                </div>
                 <div class="mb-3">
-                    <label for="user_id-field">User_id</label>
-                    <input class="form-control" type="text" name="user_id" id="user_id-field" value="{{ old('user_id', $warehouse->user_id ) }}" />
-                </div> 
+                    <label for="user_id-field">User_name: </label>
+                    <label for="user_id-field">{{ Auth::user()->name }}</label>
+                    <input type="hidden" name="user_id" value="{{ $warehouse->user_id=Auth::id() }}">
+                    {{-- <input class="form-control" type="text" name="user_id" id="user_id-field" value="{{ old('user_id', $warehouse->user_id ) }}" /> --}}
+                </div>
                 <div class="mb-3">
                 	<label for="description-field">Description</label>
                 	<textarea name="description" id="description-field" class="form-control" rows="3">{{ old('description', $warehouse->description ) }}</textarea>
-                </div> 
+                </div>
                 <div class="mb-3">
                     <label for="plate_count-field">Plate_count</label>
                     <input class="form-control" type="text" name="plate_count" id="plate_count-field" value="{{ old('plate_count', $warehouse->plate_count ) }}" />

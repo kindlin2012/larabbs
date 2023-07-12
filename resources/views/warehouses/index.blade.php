@@ -8,7 +8,8 @@
         <h1>
           Warehouse
 
-          @if (Auth::check() && Auth::user()->id==1)
+          {{-- @if (Auth::check() && Auth::user()->id==1) --}}
+          @if (Auth::check())
           <a class="btn btn-success float-xs-right" href="{{ route('warehouses.create') }}">Create</a>
           @endif
 
@@ -21,7 +22,7 @@
             <thead>
               <tr>
                 <th class="text-xs-center">#</th>
-                <th>Housename</th> <th>User_id</th> <th>Description</th> <th>Plate_count</th>
+                <th>Housename</th> <th>User_name</th> <th>Description</th> <th>Plate_count</th>
                 <th class="text-xs-right">OPTIONS</th>
               </tr>
             </thead>
