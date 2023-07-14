@@ -14,8 +14,12 @@ class UserPolicy
         return $currentUser->id === $user->id;
     }
 
-    public function create(User $user)
+    // public function create(User $user)
+    // {
+    //     return $user->id==1;
+    // }
+    public function store(User $currentUser, User $user)
     {
-        return $user->id==1;
+        return true;
     }
 }

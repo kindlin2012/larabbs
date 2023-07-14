@@ -2,7 +2,7 @@
 
 return [
     // HTTP 请求的超时时间（秒）
-    'timeout' => 5.0,
+    'timeout' => 10.0,
 
     // 默认发送配置
     'default' => [

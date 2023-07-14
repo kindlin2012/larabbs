@@ -37,6 +37,8 @@ Route::prefix('v1')
                 // 用户注册
                 Route::post('users', [UsersController::class, 'store'])
                     ->name('users.store');
+                Route::get('users', [UsersController::class, 'index'])
+                    ->name('users.index');
 
                   // 图片验证码
                   Route::post('captchas', [CaptchasController::class, 'store'])

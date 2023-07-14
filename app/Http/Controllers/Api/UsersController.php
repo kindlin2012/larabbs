@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Resources\UserResource;
@@ -14,8 +14,10 @@ class UsersController extends Controller
 {
     public function store(UserRequest $request)
     {
+
         $cacheKey = 'verificationCode_'.$request->verification_key;
         $verifyData = Cache::get($cacheKey);
+        // return $verifyData;
 
        if (!$verifyData) {
            abort(403, '验证码已失效');
@@ -36,5 +38,10 @@ class UsersController extends Controller
         Cache::forget($cacheKey);
 
         return new UserResource($user);
+    }
+
+    public function index()
+    {
+        return User::all();
     }
 }
