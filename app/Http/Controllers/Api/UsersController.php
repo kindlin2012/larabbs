@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 use App\Http\Requests\Api\UserRequest;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Cache;
+use App\Models\Image;
 
 class UsersController extends Controller
 {
@@ -37,11 +38,38 @@ class UsersController extends Controller
         // 清除验证码缓存
         Cache::forget($cacheKey);
 
-        return new UserResource($user);
+        return (new UserResource($user))->showSensitiveFields();
     }
 
     public function index()
     {
         return User::all();
+    }
+
+    public function show(User $user, Request $request)
+    {
+        return new UserResource($user);
+    }
+
+    public function me(Request $request)
+    {
+        return (new UserResource($request->user()))->showSensitiveFields();
+    }
+
+    public function update(UserRequest $request)
+    {
+        $user = $request->user();
+
+        $attributes = $request->only(['name', 'email', 'introduction']);
+
+        if ($request->avatar_image_id) {
+            $image = Image::find($request->avatar_image_id);
+
+            $attributes['avatar'] = $image->path;
+        }
+
+        $user->update($attributes);
+
+        return (new UserResource($user))->showSensitiveFields();
     }
 }
