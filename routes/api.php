@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\TopicsController;
 use App\Http\Controllers\Api\RepliesController;
 use App\Http\Controllers\Api\NotificationsController;
 use App\Http\Controllers\Api\PermissionsController;
+use App\Http\Controllers\Api\LinksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ use App\Http\Controllers\Api\PermissionsController;
 
 
 Route::prefix('v1')
+    // ->namespace('Api')
+    ->middleware('change-locale')
     ->name('api.v1.')
     ->group(function () {
         // Route::get('topics', [TopicsController::class,'index']);
@@ -96,6 +99,13 @@ Route::prefix('v1')
                 // 某个用户发布的话题
                 Route::get('users/{user}/topics', [TopicsController::class, 'userIndex'])
                     ->name('users.topics.index');
+                 // 资源推荐
+                 Route::apiResource('links', LinksController::class)->only([
+                    'index'
+                ]);
+                // 活跃用户
+                Route::get('actived/users', [UsersController::class, 'activedIndex'])
+                    ->name('actived.users.index');
 
 
                  // 登录后可以访问的接口
