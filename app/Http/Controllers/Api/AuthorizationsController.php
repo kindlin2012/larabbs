@@ -65,6 +65,7 @@ class AuthorizationsController extends Controller
 
         // return response()->json(['token' => $user->id]);
         $token = auth('api')->login($user);
+
         return $this->respondWithToken($token)->setStatusCode(201);
     }
 
@@ -117,6 +118,7 @@ class AuthorizationsController extends Controller
     public function weappStore(WeappAuthorizationRequest $request)
     {
         $code = $request->code;
+        // \Log::debug($request);
 
         // 根据 code 获取微信 openid 和 session_key
         $miniApp = app('easywechat.mini_app');
@@ -145,7 +147,7 @@ class AuthorizationsController extends Controller
             // 用户名可以是邮箱或电话
             filter_var($username, FILTER_VALIDATE_EMAIL) ?
                 $credentials['email'] = $username :
-                $credentials['phone'] = $username;
+                $credentials['name'] = $username;
 
             $credentials['password'] = $request->password;
             // return $credentials;
@@ -160,12 +162,18 @@ class AuthorizationsController extends Controller
         }
 
         // 更新用户数据
+ 
         $user->update($attributes);
 
         // 为对应用户创建 JWT
         $token = auth('api')->login($user);
+        // \Log::debug(\Cache::getall());
+        \Log::debug($token);
+
 
         return $this->respondWithToken($token)->setStatusCode(201);
     }
+
+
 
 }
