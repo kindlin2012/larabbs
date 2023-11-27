@@ -66,6 +66,26 @@
                 仓库列表
               </a>
               <div class="dropdown-divider"></div>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('messages.sent') }}">
+                <i class="far fa-edit mr-2"></i>
+                发送的私信
+              </a>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('messages.received') }}">
+                <i class="far fa-edit mr-2"></i>
+                接收的私信
+               @if(Auth::user()->receivedMessages()->where('has_read', false)->count() > 0)
+               <span class="nav-link ms-3 me-3 badge bg-secondary rounded-pill badge-{{ Auth::user()->receivedMessages()->where('has_read', false)->count() > 0 ? 'hint' : 'secondary' }} text-white">
+                {{ Auth::user()->receivedMessages()->where('has_read', false)->count() }} 条未读
+               </span>
+                @endif
+              {{-- <li class="nav-item notification-badge"> --}}
+
+              {{-- </li> --}}
+              </a>
+              <div class="dropdown-divider"></div>
               <a class="dropdown-item" id="logout" href="#">
                 <form action="{{ route('logout') }}" method="POST" onsubmit="return confirm('您确定要退出吗？');">
                   {{ csrf_field() }}

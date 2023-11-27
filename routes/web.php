@@ -45,3 +45,9 @@ Route::resource('notifications', 'NotificationsController', ['only' => ['index']
 Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
 
 Route::resource('warehouses', 'WarehousesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+Route::get('messages/{message}', 'MessagesController@show')->where('message', '[0-9]+')->name('messages.show');
+Route::get('messages/received', 'MessagesController@received')->name('messages.received');
+Route::get('messages/sent', 'MessagesController@sent')->name('messages.sent');
+Route::resource('messages', 'MessagesController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+

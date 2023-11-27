@@ -18,6 +18,8 @@
           <hr>
           <h5><strong>最后活跃</strong></h5>
           <p title="{{  $user->last_actived_at }}">{{ $user->last_actived_at->diffForHumans() }}</p>
+          <hr>
+          <a href="{{ route('messages.create', ['receiver_id' => $user->id]) }}" class="btn btn-primary">发送私信</a>
         </div>
       </div>
     </div>
