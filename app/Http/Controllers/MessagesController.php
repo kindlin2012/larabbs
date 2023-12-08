@@ -77,7 +77,7 @@ class MessagesController extends Controller
     public function sent(Request $request)
     {
         // dd($request->user()->sentMessages()->get());
-        $messages = $request->user()->sentMessages()->paginate(10);
+        $messages = $request->user()->sendMessages()->paginate(10);
 
         return view('messages.sent', compact('messages'));
     }

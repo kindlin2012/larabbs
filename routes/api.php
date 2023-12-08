@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\RepliesController;
 use App\Http\Controllers\Api\NotificationsController;
 use App\Http\Controllers\Api\PermissionsController;
 use App\Http\Controllers\Api\LinksController;
+use App\Http\Controllers\Api\MessagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,6 +152,19 @@ Route::prefix('v1')
                          // 当前登录用户权限
                     Route::get('user/permissions', [PermissionsController::class, 'index'])
                     ->name('user.permissions.index');
+
+
+                    //当前用户发送的私信列表
+                    Route::get('user/messages/sent', [MessagesController::class, 'sent'])
+                        ->name('messages.sent');
+                    //某个用户接收的私信列表
+                    Route::get('user/messages/received', [MessagesController::class, 'received'])
+                        ->name('messages.received');
+
+                    //message的接口
+                    Route::apiResource('messages', MessagesController::class)->only([
+                        'index', 'show', 'store', 'update', 'destroy'
+                    ]);
                 });
             });
     });

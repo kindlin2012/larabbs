@@ -127,7 +127,7 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
     }
 
     //私信关联
-    public function sentMessages()
+    public function sendMessages()
     {
         return $this->hasMany(Message::class, 'sender_id');
     }
